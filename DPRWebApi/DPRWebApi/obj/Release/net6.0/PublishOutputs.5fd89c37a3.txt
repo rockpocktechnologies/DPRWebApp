@@ -1,0 +1,17 @@
+S:\Projects\DPRWebApi\DPRWebApi\obj\Release\net6.0\PubTmp\Out\DPRWebApi.exe
+S:\Projects\DPRWebApi\DPRWebApi\obj\Release\net6.0\PubTmp\Out\appsettings.Development.json
+S:\Projects\DPRWebApi\DPRWebApi\obj\Release\net6.0\PubTmp\Out\appsettings.json
+S:\Projects\DPRWebApi\DPRWebApi\obj\Release\net6.0\PubTmp\Out\DPRWebApi.dll
+S:\Projects\DPRWebApi\DPRWebApi\obj\Release\net6.0\PubTmp\Out\DPRWebApi.deps.json
+S:\Projects\DPRWebApi\DPRWebApi\obj\Release\net6.0\PubTmp\Out\DPRWebApi.runtimeconfig.json
+S:\Projects\DPRWebApi\DPRWebApi\obj\Release\net6.0\PubTmp\Out\DPRWebApi.pdb
+S:\Projects\DPRWebApi\DPRWebApi\obj\Release\net6.0\PubTmp\Out\Microsoft.OpenApi.dll
+S:\Projects\DPRWebApi\DPRWebApi\obj\Release\net6.0\PubTmp\Out\Swashbuckle.AspNetCore.Swagger.dll
+S:\Projects\DPRWebApi\DPRWebApi\obj\Release\net6.0\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerGen.dll
+S:\Projects\DPRWebApi\DPRWebApi\obj\Release\net6.0\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerUI.dll
+S:\Projects\DPRWebApi\DPRWebApi\obj\Release\net6.0\PubTmp\Out\System.Data.SqlClient.dll
+S:\Projects\DPRWebApi\DPRWebApi\obj\Release\net6.0\PubTmp\Out\runtimes\win-arm64\native\sni.dll
+S:\Projects\DPRWebApi\DPRWebApi\obj\Release\net6.0\PubTmp\Out\runtimes\win-x64\native\sni.dll
+S:\Projects\DPRWebApi\DPRWebApi\obj\Release\net6.0\PubTmp\Out\runtimes\win-x86\native\sni.dll
+S:\Projects\DPRWebApi\DPRWebApi\obj\Release\net6.0\PubTmp\Out\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+S:\Projects\DPRWebApi\DPRWebApi\obj\Release\net6.0\PubTmp\Out\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll

@@ -1,0 +1,435 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DPR_CrossPlatformApp.UpdateMaterialsPage"
+             Padding="0,-10,0,0">
+
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!-- Style for bold labels -->
+            <Style TargetType="Label">
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+            <!-- Style for rounded corners in Picker -->
+            <Style TargetType="Frame" x:Key="PickerFrameStyle">
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="Padding" Value="5" />
+                <Setter Property="HasShadow" Value="True" />
+                <Setter Property="Margin" Value="0,5,0,10" />
+                <!-- Added margin at the bottom -->
+            </Style>
+            <!-- Style for arrow icon -->
+            <Style TargetType="Label" x:Key="ArrowIconStyle">
+                <Setter Property="Text" Value="▼" />
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+            <Style TargetType="Picker">
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="TitleColor" Value="Black" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout>
+        
+        <StackLayout Orientation="Horizontal" BackgroundColor="White" Padding="-20,30,13,5">
+        <!-- Hamburger Menu Icon -->
+        <!--<Image Source="hamburger_icon.png" WidthRequest="30" HeightRequest="30" VerticalOptions="Center" />-->
+
+        <!-- Logo -->
+            <Image Source="afconslogo.png" WidthRequest="120" HeightRequest="30" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" />
+
+        <!-- Logged-in Person's Name -->
+          
+            <Label  Text="{Binding LoggedInUsername,Mode=TwoWay}" FontSize="Small" VerticalOptions="Center" HorizontalOptions="EndAndExpand" />
+            <Button Text="Logout" Command="{Binding LogoutCommand}" BackgroundColor="Transparent" TextColor="Red" />
+
+        </StackLayout>
+
+
+    <ScrollView>
+
+
+            <StackLayout Padding="10,8">
+            <!-- Calendar (Date) -->
+            <!-- Calendar (Date) -->
+            <!-- Date -->
+            <!-- Date -->
+            <!--<Frame BackgroundColor="White" BorderColor="Black" HasShadow="False" Padding="0" Margin="0" CornerRadius="0">
+                <StackLayout Orientation="Horizontal" Padding="10">
+                    --><!-- Menu Icon --><!--
+                    <Image Source="menu_icon.png" WidthRequest="30" HeightRequest="30" />
+
+                    --><!-- Logo Image --><!--
+                    <Image Source="app_logo.png" WidthRequest="120" HeightRequest="30" HorizontalOptions="CenterAndExpand" />
+
+                    --><!-- Spacer to push the next logo to the right --><!--
+                    <BoxView HorizontalOptions="FillAndExpand" />
+
+                    --><!-- Another Logo on the Right --><!--
+                    <Image Source="another_logo.png" WidthRequest="30" HeightRequest="30" />
+                </StackLayout>
+            </Frame>-->
+            <Frame BorderColor="DarkGray"
+       CornerRadius="5"
+       Padding="5"
+       Margin="0,5,0,10">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                        <!--<Label Text="Date" VerticalOptions="Center" />-->
+                        <Image Source="calender.gif" HeightRequest="25" WidthRequest="25"/>
+
+                        <DatePicker x:Name="Date" Date="{Binding SelectedDate}"
+                                    Format="dd/MM/yyyy" WidthRequest="110"
+                                    DateSelected="OnDateSelected"/>
+                </StackLayout>
+            </Frame>
+
+
+
+
+            <!-- Job Code and Block (Side by Side) -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <StackLayout Grid.Column="0">
+                    <Label Text="Job Code" />
+                    <Frame Style="{StaticResource PickerFrameStyle}">
+                        <StackLayout Orientation="Horizontal">
+                                <Picker x:Name="ProjectPicker"
+            Title="Select"
+            ItemsSource="{Binding Projects}"
+            ItemDisplayBinding="{Binding ProjectName}"
+            SelectedItem="{Binding SelectedProject, Mode=TwoWay}"
+            WidthRequest="135">
+                                </Picker>
+
+                                <Label Style="{StaticResource ArrowIconStyle}" VerticalOptions="Center" HorizontalOptions="EndAndExpand" />
+                        </StackLayout>
+                    </Frame>
+                    
+                </StackLayout>
+
+                <StackLayout Grid.Column="1">
+                    <Label Text="Block" />
+                    <Frame Style="{StaticResource PickerFrameStyle}">
+                        <StackLayout Orientation="Horizontal">
+                                <Picker x:Name="BlockPicker"
+            Title="Select"
+            ItemsSource="{Binding Blocks}"
+            ItemDisplayBinding="{Binding BlockName}"
+            SelectedItem="{Binding SelectedBlock, Mode=TwoWay}"
+            WidthRequest="135">
+                                </Picker>
+                                <Label Style="{StaticResource ArrowIconStyle}" VerticalOptions="Center" HorizontalOptions="EndAndExpand" />
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </Grid>
+
+            <!-- Component and Location (Side by Side) -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                    <StackLayout Grid.Column="0">
+                        <Label Text="Component" />
+                        <Frame Style="{StaticResource PickerFrameStyle}">
+                            <StackLayout Orientation="Horizontal">
+                                <Picker x:Name="ComponentPicker"
+                    Title="Select"
+                    ItemsSource="{Binding Components}"
+                    ItemDisplayBinding="{Binding ComponentName}"
+                    SelectedItem="{Binding SelectedComponent, Mode=TwoWay}"
+                    WidthRequest="135">
+                                </Picker>
+                                <Label Style="{StaticResource ArrowIconStyle}" VerticalOptions="Center" HorizontalOptions="EndAndExpand" />
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="1">
+                        <Label Text="Location" />
+                        <Frame Style="{StaticResource PickerFrameStyle}">
+                            <StackLayout Orientation="Horizontal">
+                                <Picker x:Name="LocationPicker"
+                    Title="Select"
+                    ItemsSource="{Binding Locations}"
+                    ItemDisplayBinding="{Binding LocationName}"
+                    SelectedItem="{Binding SelectedLocation, Mode=TwoWay}"
+                    WidthRequest="135">
+                                </Picker>
+                                <Label Style="{StaticResource ArrowIconStyle}" VerticalOptions="Center" HorizontalOptions="EndAndExpand" />
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </Grid>
+
+            <!-- Village Name and BOQ Head (Side by Side) -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                    <StackLayout Grid.Column="0">
+                        <Label Text="Village" />
+                        <Frame Style="{StaticResource PickerFrameStyle}">
+                            <StackLayout Orientation="Horizontal">
+                                <Picker x:Name="VillagePicker"
+                    Title="Select"
+                    ItemsSource="{Binding Villages}"
+                    ItemDisplayBinding="{Binding VillageName}"
+                    SelectedItem="{Binding SelectedVillage, Mode=TwoWay}"
+                    WidthRequest="135">
+                                </Picker>
+                                <Label Style="{StaticResource ArrowIconStyle}" VerticalOptions="Center" HorizontalOptions="EndAndExpand" />
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="1">
+                        <Label Text="BoQ Head" />
+                        <Frame Style="{StaticResource PickerFrameStyle}">
+                            <StackLayout Orientation="Horizontal">
+                                <Picker x:Name="BoQHeadPicker"
+                    Title="Select"
+                    ItemsSource="{Binding BoQHeads}"
+                    ItemDisplayBinding="{Binding BoQHeadName}"
+                    SelectedItem="{Binding SelectedBoQHead, Mode=TwoWay}"
+                    WidthRequest="135">
+                                </Picker>
+                                <Label Style="{StaticResource ArrowIconStyle}" VerticalOptions="Center" HorizontalOptions="EndAndExpand" />
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                    <!-- Activity Indicator -->
+                    <ActivityIndicator x:Name="LoadingIndicator1" IsRunning="False" IsVisible="False" Color="Red" />
+                </Grid>
+
+            <!-- BOQ Reference and Activity (Side by Side) -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                    <StackLayout Grid.Column="0">
+                        <Label Text="BoQ Reference" />
+                        <Frame Style="{StaticResource PickerFrameStyle}">
+                            <StackLayout Orientation="Horizontal">
+                                <Picker x:Name="BoQReferencePicker"
+                    Title="Select"
+                    ItemsSource="{Binding BoQReferences}"
+                    ItemDisplayBinding="{Binding BOQNo}"
+                    SelectedItem="{Binding SelectedBoQReference, Mode=TwoWay}"
+                    WidthRequest="135">
+                                </Picker>
+                                <Label Style="{StaticResource ArrowIconStyle}" VerticalOptions="Center" HorizontalOptions="EndAndExpand" />
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                
+                    <StackLayout Grid.Column="1">
+                        <Label Text="WBS Number" />
+                        <Frame BorderColor="DarkGray" CornerRadius="5" Padding="8"
+                               HorizontalOptions="FillAndExpand">
+                            <Entry x:Name="WBSNumber" Placeholder="WBS Number"
+                                   Text="{Binding WBSNumber}" />
+
+                        </Frame>
+                    </StackLayout>
+
+                    <!--<StackLayout Grid.Column="1">
+                    <Label Text="Activity" />
+                    <Frame Style="{StaticResource PickerFrameStyle}">
+                        <StackLayout Orientation="Horizontal">
+                                <Picker x:Name="Activity" Title="Select" WidthRequest="135">
+                                <Picker.Items>
+                                    <x:String>Excavation and Laying</x:String>
+                                    <x:String>Activity 2</x:String>
+                                </Picker.Items>
+                            </Picker>
+                            <Label Style="{StaticResource ArrowIconStyle}" VerticalOptions="Center" HorizontalOptions="EndAndExpand" />
+                        </StackLayout>
+                    </Frame>-->
+                <!--</StackLayout>-->
+            </Grid>
+
+            <!-- Continue with the rest of your UI elements -->
+
+            <!-- Day Quantity -->
+            <!--<Label Text="Day Quantity" />
+            <Entry x:Name="DayQuantity" />-->
+
+            <!-- Type of Pipe and Diameter of Pipe -->
+        <!-- Group of Labels and Values -->
+            <!-- Type of Pipe and UOM -->
+                <Frame BorderColor="Black" HasShadow="False" CornerRadius="5" Margin="1">
+                    <StackLayout Orientation="Vertical">
+                    <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Type of Pipe -->
+                    <StackLayout Grid.Column="0" Orientation="Horizontal">
+                    <Label Text="Type of Pipe:" />
+                        <Label Text="{Binding TypeOfPipe}" />
+                </StackLayout>
+
+                <!-- UOM -->
+                <StackLayout Grid.Column="1" Orientation="Horizontal">
+                        <Label Text="Dia of Pipe:" />
+                        <Label Text="{Binding DiaOfPipe}" />
+                    </StackLayout>
+            </Grid>
+
+                <!-- Design Quantity and Total Quantity -->
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Design Quantity -->
+                            <StackLayout Grid.Column="0" Orientation="Horizontal">
+                                <Label Text="UOM:" />
+                                <Label Text="{Binding Uom}" />
+                            </StackLayout>
+
+                            <!-- Total Quantity -->
+                            <StackLayout Grid.Column="1" Orientation="Horizontal">
+                                <Label Text="Activity:" />
+                                <Label Text="Excavation" />
+                            </StackLayout>
+                        </Grid>
+
+                        <!-- Total Quantity -->
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    
+                                    
+                                    <!-- Design Quantity -->
+                                    <StackLayout Grid.Column="0" Orientation="Horizontal">
+                            
+                                <Label Text="FTD Quantity:" />
+                                <Label Text="{Binding FTDQuantity,Mode=TwoWay}" />
+                                    </StackLayout>
+
+                            <StackLayout Grid.Column="1" Orientation="Horizontal">
+                                <Label Text="FTM Quantity:" />
+                                <Label Text="{Binding FTMQuantity,Mode=TwoWay}" />
+                            </StackLayout>
+
+                          
+                                </Grid>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+
+
+                            <!-- Design Quantity -->
+                            <StackLayout Grid.Column="0" Orientation="Horizontal">
+                                <Label Text="JTD Quantity:" />
+                                <Label Text="{Binding JTDQuantity,Mode=TwoWay}" />
+                            </StackLayout>
+
+                            <StackLayout Grid.Column="1" Orientation="Horizontal">
+                                <Label Text="Block Quantity:" />
+                                <Label Text="{Binding BlockQuantity}" />
+                            </StackLayout>
+
+
+                        </Grid>
+
+
+                    </StackLayout>
+                </Frame>
+                <!-- Save and Submit buttons -->
+                <Grid>
+                   
+
+                    <!-- Day Quantity -->
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="10,10,0,10">
+                        <!-- Day Quantity -->
+                        <Frame BorderColor="DarkGray" CornerRadius="5" Padding="5" HorizontalOptions="FillAndExpand">
+                            <Entry x:Name="DayQuantityEntry" 
+                                   Placeholder="Day quantity"
+                                   Text="{Binding DayQuantityText}" />
+
+
+                        </Frame>
+
+                      
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="1" Text="Submit" Command="{Binding SaveCommand}" BackgroundColor="Red" TextColor="White" CornerRadius="5" />
+
+                            <Button Grid.Column="0" Text="Save" Command="{Binding SaveCommand}" BackgroundColor="Red" TextColor="White" CornerRadius="5" />
+                        </Grid>
+                    </StackLayout>
+                </Grid>
+
+
+
+                <ListView x:Name="materialTransactionsListView"
+                          ItemsSource="{Binding MaterialTransactionsSummary}" 
+                          HasUnevenRows="True"
+                          IsVisible="{Binding IsListViewVisible}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame Padding="10" Margin="5" BorderColor="Black" HasShadow="False">
+                                    <StackLayout Orientation="Horizontal">
+                                        <StackLayout WidthRequest="100">
+                                            <Label Text="Block:" />
+                                            <Label Text="Village:" />
+                                            <Label Text="BoQ Reference:" />
+                                            <Label Text="Day Quantity:" />
+                                        </StackLayout>
+                                        <StackLayout Orientation="Vertical">
+                                            <Label Text="{Binding Block}" />
+                                            <Label Text="{Binding Village}" />
+                                            <Label Text="{Binding BoQReference}" />
+                                            <Label Text="{Binding DayQuantity}" />
+                                        </StackLayout>
+                                        <StackLayout HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Orientation="Vertical">
+                                            <Image Source="eye_icon.png" HeightRequest="25" WidthRequest="25"/>
+                                            <Image Source="edit_icon.png" HeightRequest="25" WidthRequest="25"/>
+                                            <Image Source="delete_icon.png" HeightRequest="25" WidthRequest="25"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.Footer>
+                        <StackLayout HeightRequest="0"/>
+                    </ListView.Footer>
+                </ListView>
+
+              
+            </StackLayout>
+    </ScrollView>
+
+    </StackLayout>
+</ContentPage>

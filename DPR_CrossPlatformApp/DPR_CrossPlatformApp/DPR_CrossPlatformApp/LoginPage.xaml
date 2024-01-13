@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DPR_CrossPlatformApp.LoginPage">
+
+    <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+        <!-- Logo Image -->
+        <Image Source="AfconsLogoNew.png" WidthRequest="150" HeightRequest="150" />
+
+        <!-- Parent Layout with Fixed or Full Width -->
+        <StackLayout WidthRequest="300">
+            <!-- Adjust the WidthRequest as needed -->
+
+            <!-- Username Entry with Border -->
+            <Frame BorderColor="Gray" CornerRadius="15" Padding="15">
+                <Entry x:Name="UsernameEntry" Placeholder="Username" 
+                       BackgroundColor="Transparent" />
+            </Frame>
+
+            <!-- Password Entry with Border -->
+            <Frame BorderColor="Gray" CornerRadius="15" Padding="15" Margin="0,15,0,0">
+                <Entry x:Name="PasswordEntry" Placeholder="Password" IsPassword="True" 
+                       BackgroundColor="Transparent" />
+            </Frame>
+
+            <!-- Login Button with ActivityIndicator -->
+            <Button x:Name="LoginButton" Text="Login" Clicked="OnLoginButtonClicked" 
+        BackgroundColor="Red" TextColor="White" Margin="60,30,60,10" CornerRadius="10"/>
+
+            <!-- ActivityIndicator -->
+            <ActivityIndicator x:Name="LoadingIndicator" IsRunning="False" IsVisible="False" Color="Red" />
+        </StackLayout>
+
+    </StackLayout>
+</ContentPage>

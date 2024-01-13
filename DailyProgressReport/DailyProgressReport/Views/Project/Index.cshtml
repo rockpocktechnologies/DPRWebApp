@@ -1,0 +1,273 @@
+﻿@model List<ProjectViewModel>
+
+<div id="dynamicContentContainer" style="max-width: 800px; margin-left: 225px;">
+   @* <h3 class="text-center mb-4">Add New Project</h3>*@
+    <form asp-controller="Project" asp-action="SaveProject" method="post">
+        @{
+            var isEditAction = ViewContext.RouteData.Values["action"].ToString().Equals("Editproject", StringComparison.OrdinalIgnoreCase);
+        }
+        @if (isEditAction)
+        {
+            @if (Model != null)
+            {
+                <input type="hidden" name="ProjectID" value="@Model[0].ProjectID" />
+            }
+
+            <table class="text-center form-table" style="margin-left: 100px;width: 750px">
+                <tbody>
+                    <tr>
+                        <th><label>Project Name</label></th>
+                        <td><input name="ProjectName" class="form-control" value="@((Model[0] != null) ? Model[0].ProjectName : "")" /></td>
+                    </tr>
+                    <tr>
+                        <th><label>Short Name</label></th>
+                        <td><input name="ProjectShortName" class="form-control" value="@((Model[0] != null) ? Model[0].ProjectShortName : "")" /></td>
+                    </tr>
+                    <tr>
+                        <th><label>Project Code</label></th>
+                        <td><input name="ProjectCode" class="form-control" value="@((Model[0] != null) ? Model[0].ProjectCode : "")" /></td>
+                    </tr>
+                    <tr>
+                        <th><label>Start Date</label></th>
+                        <td><input name="ProjectStartDate" id="ProjectStartDate" class="form-control" value="@((Model[0] != null) ? Model[0].ProjectStartDate : "")" /></td>
+                    </tr>
+                    <tr>
+                        <th><label>End Date</label></th>
+                        <td><input name="ProjectEndDate" id="ProjectEndDate" class="form-control" value="@((Model[0] != null) ? Model[0].ProjectEndDate : "")" /></td>
+                    </tr>
+                    <tr>
+                        <th><label>Revised End Date</label></th>
+                        <td><input name="ProjectRevisedDate" id="ProjectRevisedDate" class="form-control" value="@((Model[0] != null) ? Model[0].ProjectRevisedDate : "")" /></td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td>
+                            <button type="submit" class="btn btn-danger d-block mx-auto mt-3">
+                               
+                                    <text>Update Changes</text>
+                                
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            }
+            else{
+            <table class="text-center form-table" style="margin-left: 100px;width: 750px">
+                <tbody>
+                    <tr>
+                        <th><label>Project Name</label></th>
+                        <td><input name="ProjectName" class="form-control" value="" /></td>
+                    </tr>
+                    <tr>
+                        <th><label>Short Name</label></th>
+                        <td><input name="ProjectShortName" class="form-control" value="" /></td>
+                    </tr>
+                    <tr>
+                        <th><label>Project Code</label></th>
+                        <td><input name="ProjectCode" class="form-control" value="" /></td>
+                    </tr>
+                    <tr>
+                        <th><label>Start Date</label></th>
+                        <td><input name="ProjectStartDate" id="ProjectStartDate" class="form-control" value="" /></td>
+                    </tr>
+                    <tr>
+                        <th><label>End Date</label></th>
+                        <td><input name="ProjectEndDate" id="ProjectEndDate" class="form-control" value="" /></td>
+                    </tr>
+                    <tr>
+                        <th><label>Revised End Date</label></th>
+                        <td><input name="ProjectRevisedDate" id="ProjectRevisedDate" class="form-control" value="" /></td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td>
+                            <button type="submit" class="btn btn-danger d-block mx-auto mt-3">
+                               
+                                    <text>Save Changes</text>
+                             
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+            }
+            </form>
+        
+
+    <br> <br> 
+   @* <h3 class="text-center mb-4">Project List</h3>*@
+
+    <table id="projectTable" class="table" style="width: 1000px;">
+        <thead>
+            <tr>
+
+                <th>Project ID</th>
+                <th>Project Name</th>
+                <th>Short Name</th>
+                <th>Project Code</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Revised End Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var project in Model)
+            {
+                <tr>
+                    <td>@project.ProjectID</td>
+                    <td>@project.ProjectName</td>
+                    <td>@project.ProjectShortName</td>
+                    <td>@project.ProjectCode</td>
+                    <td>@project.ProjectStartDate</td>
+                    <td>@project.ProjectEndDate</td>
+                    <td>@project.ProjectRevisedDate</td>
+                    
+
+                    <td>
+                        <i class="edit-icon" onclick="editProject(@project.ProjectID)">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16"> <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" /> </svg>
+                        </i>
+
+                        <i class="delete-icon" onclick="deleteProject(@project.ProjectID)">
+                            <svg style="color: red" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16"> <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" fill="red"></path> <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" fill="red"></path> </svg>
+                        </i>
+                    
+
+
+
+
+                       @* <i class="fas fa-edit text-warning" onclick="editProject(@project.ProjectID)"></i>
+                        <i class="fas fa-trash-alt text-danger" onclick="deleteProject(@project.ProjectID)"></i>
+*@                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@*<script src="https://code.jquery.com/jquery-3.1.1.min.js"> </script>
+
+<!-- Include DataTables library and initialization script -->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+*@
+<script>
+    $(document).ready(function () {
+        $('#projectTable').DataTable({
+            "columnDefs": [
+                {
+                    "targets": [0],  // Index of the column (ProjectID in this case)
+                    "visible": false,
+                    "searchable": false,
+                }
+            ],
+            "order": [[0, "desc"]]  // Sort by ProjectID in descending order
+        });
+    });
+    $("#ProjectStartDate").datepicker({
+        dateFormat: "dd/mm/yy",
+        onSelect: function (selectedDate) {
+            var fromDate = new Date(formatDateForDisplay(selectedDate));
+            fromDate.setDate(fromDate.getDate()); // Minimum Return Date is Departure Date + 1 day
+            $("#ProjectEndDate").datepicker("option", "minDate", fromDate);
+
+           
+        }
+    });
+
+    $("#ProjectEndDate").datepicker({
+        dateFormat: "dd/mm/yy",
+        onSelect: function (selectedDate) {
+            var toDate = new Date(formatDateForDisplay(selectedDate));
+            $("#ProjectStartDate").datepicker("option", "maxDate", toDate);
+
+            var fromDate = new Date(formatDateForDisplay(selectedDate));
+            fromDate.setDate(fromDate.getDate()); // Minimum Return Date is Depar
+            $("#ProjectRevisedDate").datepicker("option", "minDate", fromDate);
+            $("#ProjectRevisedDate").val($("#ProjectEndDate").val());
+            //var fromDate = new Date(formatDateForDisplay(selectedDate));
+            //fromDate.setDate(fromDate.getDate()); // Minimum Return Date is Departure Date + 1 day
+            //$("#travelReturnDate").datepicker("option", "minDate", fromDate);
+        }
+    });
+
+    if (window.location.href.indexOf("Editproject") > -1) {
+    $("#ProjectRevisedDate").datepicker({
+        minDate: 0, // Disable past dates
+        dateFormat: "dd/mm/yy",
+        onSelect: function (selectedDate) {
+            //var fromDate = new Date(formatDateForDisplay(selectedDate));
+            //fromDate.setDate(fromDate.getDate()); // Minimum Return Date is Departure Date + 1 day
+            //$("#travelReturnDate").datepicker("option", "minDate", fromDate);
+        }
+    });
+       }
+
+    function editProject(projectId) {
+        window.location.href = '/Project/Editproject?projectId=' + projectId;
+    }
+
+    function formatDateForDisplay(date) {
+        var dateParts = date.split("/");
+        if (dateParts.length === 3) {
+            var day = dateParts[0];
+            var month = dateParts[1];
+            var year = dateParts[2];
+            // Reformat the date as "dd/mm/yy" for display
+            return month + "/" + day + "/" + year;
+        }
+        // If the input date format is not as expected, return it as-is
+        return date;
+    }
+</script>
+<script>
+    function showConfirmationMessage(action) {
+        var confirmationMessage;
+        if (action === 'Save') {
+            confirmationMessage = 'Project created successfully!';
+        } else if (action === 'Save') {
+            confirmationMessage = 'Project updated successfully!';
+        }
+
+        // You can customize the appearance of the message (e.g., using a library like SweetAlert)
+        alert(confirmationMessage);
+    }
+
+    function deleteProject(projectId) {
+        if (confirm("Are you sure you want to delete this project?")) {
+            // Use AJAX to send a delete request to your server
+            $.ajax({
+                url: '/Project/DeleteProject',  // Update the URL to match your controller action
+                type: 'POST',
+                data: { projectId: projectId },
+                success: function (result) {
+                    if (result.success) {
+                        // Optionally update the UI or perform additional actions after successful deletion
+                        // For example, you might want to reload the table to reflect the updated data
+                        location.reload();
+                    } else {
+                        alert('Error deleting project: ' + result.message);
+                    }
+                },
+                error: function (error) {
+                    console.error('Error deleting project:', error);
+                }
+            });
+        }
+    }
+
+
+    $(document).ready(function () {
+        // Attach the event handler to the form submission
+        //$('form').submit(function () {
+        //    var action = $(this).attr('asp-action');
+        //    showConfirmationMessage(action);
+        //});
+    });
+</script>
+

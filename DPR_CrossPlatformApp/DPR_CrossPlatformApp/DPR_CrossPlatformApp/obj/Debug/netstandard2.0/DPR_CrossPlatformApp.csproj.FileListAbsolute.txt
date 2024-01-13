@@ -1,0 +1,17 @@
+S:\Projects\DPR_CrossPlatformApp\DPR_CrossPlatformApp\DPR_CrossPlatformApp\bin\Debug\netstandard2.0\DPR_CrossPlatformApp.deps.json
+S:\Projects\DPR_CrossPlatformApp\DPR_CrossPlatformApp\DPR_CrossPlatformApp\bin\Debug\netstandard2.0\DPR_CrossPlatformApp.dll
+S:\Projects\DPR_CrossPlatformApp\DPR_CrossPlatformApp\DPR_CrossPlatformApp\bin\Debug\netstandard2.0\DPR_CrossPlatformApp.pdb
+S:\Projects\DPR_CrossPlatformApp\DPR_CrossPlatformApp\DPR_CrossPlatformApp\obj\Debug\netstandard2.0\DPR_CrossPlatformApp.csproj.AssemblyReference.cache
+S:\Projects\DPR_CrossPlatformApp\DPR_CrossPlatformApp\DPR_CrossPlatformApp\obj\Debug\netstandard2.0\DPR_CrossPlatformApp.GeneratedMSBuildEditorConfig.editorconfig
+S:\Projects\DPR_CrossPlatformApp\DPR_CrossPlatformApp\DPR_CrossPlatformApp\obj\Debug\netstandard2.0\App.xaml.g.cs
+S:\Projects\DPR_CrossPlatformApp\DPR_CrossPlatformApp\DPR_CrossPlatformApp\obj\Debug\netstandard2.0\MainPage.xaml.g.cs
+S:\Projects\DPR_CrossPlatformApp\DPR_CrossPlatformApp\DPR_CrossPlatformApp\obj\Debug\netstandard2.0\UpdateMaterialsPage.xaml.g.cs
+S:\Projects\DPR_CrossPlatformApp\DPR_CrossPlatformApp\DPR_CrossPlatformApp\obj\Debug\netstandard2.0\DPR_CrossPlatformApp.AssemblyInfoInputs.cache
+S:\Projects\DPR_CrossPlatformApp\DPR_CrossPlatformApp\DPR_CrossPlatformApp\obj\Debug\netstandard2.0\DPR_CrossPlatformApp.AssemblyInfo.cs
+S:\Projects\DPR_CrossPlatformApp\DPR_CrossPlatformApp\DPR_CrossPlatformApp\obj\Debug\netstandard2.0\DPR_CrossPlatformApp.csproj.CoreCompileInputs.cache
+S:\Projects\DPR_CrossPlatformApp\DPR_CrossPlatformApp\DPR_CrossPlatformApp\obj\Debug\netstandard2.0\XamlC.stamp
+S:\Projects\DPR_CrossPlatformApp\DPR_CrossPlatformApp\DPR_CrossPlatformApp\obj\Debug\netstandard2.0\DPR_CrossPlatformApp.dll
+S:\Projects\DPR_CrossPlatformApp\DPR_CrossPlatformApp\DPR_CrossPlatformApp\obj\Debug\netstandard2.0\refint\DPR_CrossPlatformApp.dll
+S:\Projects\DPR_CrossPlatformApp\DPR_CrossPlatformApp\DPR_CrossPlatformApp\obj\Debug\netstandard2.0\DPR_CrossPlatformApp.pdb
+S:\Projects\DPR_CrossPlatformApp\DPR_CrossPlatformApp\DPR_CrossPlatformApp\obj\Debug\netstandard2.0\ref\DPR_CrossPlatformApp.dll
+S:\Projects\DPR_CrossPlatformApp\DPR_CrossPlatformApp\DPR_CrossPlatformApp\obj\Debug\netstandard2.0\LoginPage.xaml.g.cs

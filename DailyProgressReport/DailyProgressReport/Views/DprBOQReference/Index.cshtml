@@ -1,0 +1,320 @@
+﻿@model ShowBoqReferences
+@{
+    ViewData["Title"] = "BOQ References";
+}
+
+<div id="addBOQReferenceContainer" class="container mt-4">
+@*    <h3 class="text-center mb-4">Add BOQ Reference</h3>
+*@    <form style="text-align: center; margin-left: 350px">
+        <table class="form-table">
+            <tr>
+                <th>BOQ Head</th>
+                <td>
+                    <select id="boqReferenceHead" class="form-control">
+                       <option value="">Please Select</option>
+            @foreach (var head in Model.BoqHeads)
+            {
+                <option value="@head.Id">@head.BOQHeadName</option>
+            }
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <th>BOQ No</th>
+                <td>
+                    <input type="text" id="boqReference" name="boqReference" class="form-control" placeholder="Enter BOQ No.">
+                </td>
+            </tr>
+
+            <tr>
+                <th>WBS Number</th>
+                <td>
+                    <input type="text" id="boqWBSnO" name="boqWBSnO" class="form-control" placeholder="WBS Number.">
+                </td>
+            </tr>
+
+            <tr>
+                <th>BOQ Description</th>
+                <td>
+                    <input type="text" id="BOQDescription" name="BOQDescription" class="form-control" placeholder="BOQ Description.">
+                </td>
+            </tr>
+
+            <tr>
+                <th>Activity</th>
+                <td>
+                    <input type="text" id="BOQActivity" name="BOQActivity" class="form-control" placeholder="Activity.">
+                </td>
+            </tr>
+
+            <tr>
+                <th>Unit Of Measurement</th>
+                <td>
+                    <input type="text" id="UOM" name="UOM" class="form-control" placeholder="Unit Of Measurement.">
+                </td>
+            </tr>
+
+            <tr>
+                <th>Length(M)</th>
+                <td>
+                    <input type="number" id="pipe" name="pipe" class="form-control" placeholder="Enter Length">
+                </td>
+            </tr>
+
+            <tr>
+                <th>Type of Pipe/Class</th>
+                <td>
+                    <input type="text" id="typeOfPipe" name="typeOfPipe" class="form-control" placeholder="Enter Type of Pipe/Class">
+                </td>
+            </tr>
+
+            <tr>
+                <th>Diameter</th>
+                <td>
+                    <input type="number" id="diameter" name="diameter" class="form-control" placeholder="Enter Diameter">
+                </td>
+            </tr>
+
+            <tr>
+                <th>Design Quantity</th>
+                <td>
+                    <input type="number" id="designQuantity" name="designQuantity" class="form-control" placeholder="Enter Design Quantity">
+                </td>
+            </tr>
+
+            <tr>
+                <th></th>
+                <td>
+                    <button id="btnAddBOQReference" type="button" class="btn btn-danger" onclick="addBOQReference()">Add</button>
+                    <button type="button" class="btn btn-secondary" onclick="openaddMastersContainer()">Cancel</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+</div>
+
+<div id="existingBOQReferenceListContainer" class="container mt-4">
+   @* <h6 class="text-center mb-4">BOQ Reference List</h6>*@
+    <!-- Use the design for the project list -->
+    
+    <table id="boqReferenceTable" class="table">
+        <thead>
+            <tr>
+                <th>BOQ Head</th>
+                <th>BOQ No.</th>
+                <th>WBS Number</th>
+                <th>BOQ Description</th>
+                <th>UOM</th>
+                <th>Length</th>
+                <th>Type of Pipe/Class</th>
+                <th>Diameter</th>
+                <th>Design Quantity:</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var boqReference in Model.BoqReferences)
+            {
+                <tr>
+                    <td>@boqReference.BOQHead</td>
+                    <td>@boqReference.BOQNo</td>
+                    <td>@boqReference.WBSNumber</td>
+                    <td>@boqReference.BOQDescription</td>
+                    <td>@boqReference.UOM</td>
+                    <td>@boqReference.Length</td>
+                    <td>@boqReference.TypeOfPipeClass</td>
+                    <td>@boqReference.Diameter</td>
+                    <td>@boqReference.DesignQuantity</td>
+                    <td>
+                        <i class="edit-icon" onclick="editBOQReference('@boqReference.Id')">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16"> <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" /> </svg>
+                        </i>
+
+                        <i class="delete-icon" onclick="deleteBOQReference('@boqReference.Id')">
+                            <svg style="color: red" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16"> <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" fill="red"></path> <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" fill="red"></path> </svg>
+                        </i>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@*<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+*@
+<script>
+    $(document).ready(function () {
+        // Initialize DataTable for the BOQ reference table
+        $('#boqReferenceTable').DataTable();
+    });
+
+function addBOQReference() {
+    // Use AJAX to add BOQ Reference
+    var boqHead = $('#boqReferenceHead').val();
+    var boqNo = $('#boqReference').val();
+    var wbsNumber = $('#boqWBSnO').val();
+    var boqDescription = $('#BOQDescription').val();
+    var uom = $('#UOM').val();
+    var length = $('#pipe').val();
+    var typeOfPipe = $('#typeOfPipe').val();
+    var diameter = $('#diameter').val();
+    var designQuantity = $('#designQuantity').val();
+
+    $.ajax({
+        url: '@Url.Action("AddBOQReference", "DprBOQReference")',
+        type: 'POST',
+        data: {
+            boqHead: boqHead,
+            boqNo: boqNo,
+            wbsNumber: wbsNumber,
+            boqDescription: boqDescription,
+            uom: uom,
+            length: length,
+            typeOfPipe: typeOfPipe,
+            diameter: diameter,
+            designQuantity: designQuantity
+        },
+        success: function (data) {
+            if (data.success) {
+                alert(data.message);
+                // Clear the form
+                $('#boqReferenceHead').val('');
+                $('#boqReference').val('');
+                $('#boqWBSnO').val('');
+                $('#BOQDescription').val('');
+                $('#UOM').val('');
+                $('#pipe').val('');
+                $('#typeOfPipe').val('');
+                $('#diameter').val('');
+                $('#designQuantity').val('');
+                // Reload the DataTable
+                ReloadBOQRefPage();
+            } else {
+                alert(data.message);
+            }
+        },
+        error: function () {
+            alert('Error adding BOQ Reference.');
+        }
+    });
+}
+
+
+    function editBOQReference(id) {
+        // Use AJAX to fetch BOQ Reference details by ID
+        $.ajax({
+            url: '@Url.Action("GetBOQReferenceById", "DprBOQReference")',
+            type: 'GET',
+            data: { id: id },
+            dataType: 'json',
+            success: function (data) {
+                if (data.success) {
+                    // Populate the form with fetched data
+                    $('#boqReferenceHead').val(data.boqReference.boqHead);
+                    $('#boqReference').val(data.boqReference.boqNo);
+                    $('#boqWBSnO').val(data.boqReference.wbsNumber);
+                    $('#BOQDescription').val(data.boqReference.boqDescription);
+                    $('#UOM').val(data.boqReference.uom);
+                    $('#pipe').val(data.boqReference.length);
+                    $('#typeOfPipe').val(data.boqReference.typeOfPipeClass);
+                    $('#diameter').val(data.boqReference.diameter);
+                    $('#designQuantity').val(data.boqReference.designQuantity);
+                    // ... (Populate other input values)
+
+                    // Change the button text and bind the update function
+                    $('#btnAddBOQReference').removeAttr('onclick');
+                    $('#btnAddBOQReference').text('Update').click(function () {
+                        updateBOQReference(id);
+                    });
+                    // Show the cancel button
+                    //$('#cancelBtn').show();
+                } else {
+                    alert('Error fetching BOQ Reference details.');
+                }
+            },
+            error: function () {
+                alert('Error fetching BOQ Reference details.');
+            }
+        });
+    }
+
+    function updateBOQReference(id) {
+        // Use AJAX to update BOQ Reference
+        var boqHead = $('#boqReferenceHead').val();
+        var boqNo = $('#boqReference').val();
+        var wbsNumber = $('#boqWBSnO').val();
+        var boqDescription = $('#BOQDescription').val();
+        var uom = $('#UOM').val();
+        var length = $('#pipe').val();
+        var typeOfPipe = $('#typeOfPipe').val();
+        var diameter = $('#diameter').val();
+        var designQuantity = $('#designQuantity').val();
+        // ... (Get other input values)
+
+        $.ajax({
+            url: '@Url.Action("UpdateBOQReference", "DprBOQReference")',
+            type: 'POST',
+            data: {
+                id:id,
+                boqHead: boqHead,
+                boqNo: boqNo,
+                wbsNumber: wbsNumber,
+                boqDescription: boqDescription,
+                uom: uom,
+                length: length,
+                typeOfPipe: typeOfPipe,
+                diameter: diameter,
+                designQuantity: designQuantity
+            },
+            success: function (data) {
+                if (data.success) {
+                    alert(data.message);
+                    // Clear the form
+                    $('#boqReferenceHead').val('');
+                    $('#boqReference').val('');
+                    // ... (Clear other input values)
+                    // Reload the DataTable
+                   ReloadBOQRefPage();
+                } else {
+                    alert(data.message);
+                }
+            },
+            error: function () {
+                alert('Error updating BOQ Reference.');
+            }
+        });
+    }
+
+    function deleteBOQReference(id) {
+        // Use AJAX to delete BOQ Reference
+        $.ajax({
+            url: '@Url.Action("DeleteBOQReference", "DprBOQReference")',
+            type: 'POST',
+            data: { id: id },
+            success: function (data) {
+                if (data.success) {
+                    alert(data.message);
+                    // Reload the DataTable
+                    ReloadBOQRefPage();
+                } else {
+                    alert(data.message);
+                }
+            },
+            error: function () {
+                alert('Error deleting BOQ Reference.');
+            }
+        });
+    }
+
+    function ReloadBOQRefPage() {
+        window.location.href = '/DprBOQReference/Index';
+    }
+    </script>
